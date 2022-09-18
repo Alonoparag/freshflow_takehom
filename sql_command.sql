@@ -22,7 +22,9 @@ SELECT
     ,   ((items.suggested_retail_price/items.purchase_price-1)*100) AS profit_margin
     ,   items.purchase_price AS purchase_price
     ,   items.item_categories as item_categories
-    ,   json_array(items.tags, items.extra_categories) as labels
+    -- ,   json_array(items.tags, items.extra_categories) as labels
+    ,   items.tags as "tags"
+    ,   items.extra_categories as "extra_categories"
     ,   json_object('quantity',items.case_content_quantity,'unit',items.case_content_unit) as 'case'
     ,   json_object('quantity',order_table.amount_to_order/items.case_content_quantity,'unit','CS') AS 'order'
     ,   json_object('quantity',order_table.inventory_quantity,'unit',items.case_content_unit) AS 'inventory'
